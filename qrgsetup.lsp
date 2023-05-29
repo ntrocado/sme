@@ -108,9 +108,9 @@
 ;;; You should not change the following settings, except to add new cases.
 
 (setq *path-sepchar*
-      #+mac ":"
+      #+darwin ":"
       #+unix "/"
-      #+microsoft "\\" ;; the first backslash escapes
+      #+(or os-windows microsoft) "\\" ;; the first backslash escapes
       )
 
 (setq *src-ext* ".lsp")
@@ -143,7 +143,7 @@
 
 (defmacro with-compiler-chatter (messages? &rest body)
   "implementation-specific means of controlling compiler messaging"
-  `(let ((lisp:*compile-verbose* ,messages?)
+  `(let ((common-lisp:*compile-verbose* ,messages?)
          )
      ,@body))
 
@@ -317,9 +317,9 @@
 
 (defun defsys-path (strings)
   (if (and (>= (length (car strings)) (length *qrg-path*))
-           #+:mswindows
+           #+:os-windows
            (string-equal (car strings) *qrg-path* :end1 (length *qrg-path*))
-           #-:mswindows
+           #-:os-windows
            (string= (car strings) *qrg-path* :end1 (length *qrg-path*)))
     (apply 'append-qrg-path strings)
     (apply 'make-qrg-path strings)))

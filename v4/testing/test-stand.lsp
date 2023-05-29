@@ -27,12 +27,12 @@
 ;; Result files are stored in a different directory, to simplify file operations.
 
 (defparameter *sme-data-path* 
-    #+:mswindows "c:\\sme4-open\\corpus\\"
+    #+:os-windows (merge-pathnames #p"../corpus/" sme:*sme-path*)
     #+:unix "/data/qrg/temp/smes2014/"
   ) 
 
 (defun run-sme-corpus-experiment (&key (results-path
-                                        #+:mswindows "c:\\sme4-open\\data\\"
+                                        #+:os-windows (merge-pathnames #p"../data/" sme:*sme-path*)
                                         #+:unix "/data/qrg/temp/sme-data/"
                                         )
                                        (unique-prefix
@@ -49,7 +49,7 @@
   (format t "~%Thermo")
   (gather-sme-batch-experiment-data
    (concatenate 'string *sme-data-path*
-     #+:mswindows "thermo\\"
+     #+:os-windows "thermo\\"
      #+:unix "thermo/"))
   (sme-batch-data->delimited-file
    results-path
@@ -57,7 +57,7 @@
   (format t "~%Geometry")
   (gather-sme-batch-experiment-data
    (concatenate 'string *sme-data-path*
-     #+:mswindows "geometry\\"
+     #+:os-windows "geometry\\"
      #+:unix "geometry/"))
   (sme-batch-data->delimited-file
    results-path
@@ -65,7 +65,7 @@
   (format t "~%Oddity")
   (gather-sme-batch-experiment-data
    (concatenate 'string *sme-data-path*
-     #+:mswindows "oddity\\"
+     #+:os-windows "oddity\\"
      #+:unix "oddity/"))
   (sme-batch-data->delimited-file
    results-path
@@ -73,7 +73,7 @@
   (format t "~%AP Physics")
   (gather-sme-batch-experiment-data
    (concatenate 'string *sme-data-path*
-     #+:mswindows "ap-physics\\"
+     #+:os-windows "ap-physics\\"
      #+:unix "ap-physics/"))
   (sme-batch-data->delimited-file
    results-path
