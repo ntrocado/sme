@@ -1,0 +1,4 @@
+This is a fork of the [[https://www.qrg.northwestern.edu/software/sme4/index.html][Structure-Mapping Engine]], v4, by Kenneth D. Forbus, Ronald W. Ferguson, Andrew
+ Lovett, and Northwestern University.
+ 
+I made some changes in order to remove implementation specific requirements, as the original sources only run properly on Allegro CL.
